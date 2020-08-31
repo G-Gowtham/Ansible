@@ -1,8 +1,16 @@
 [deb]
-172.16.12.128 ansible_user=gowtham ansible_ssh_pass=gbgm
+172.16.12.128  
+
+[deb:vars]
+ansible_user=gowtham
+ansible_ssh_pass=gbgm
+ansible_sudo_pass=gbgm
 
 [red]
-172.16.12.131 ansible_user=gg ansible_ssh_pass=gbgm
+172.16.12.131  ansible_user=gg ansible_ssh_pass=gbgm
+
+[red:vars]
+ansible_sudo_pass=gbgm
 
 [win]
 192.168.43.253
