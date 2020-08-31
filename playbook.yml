@@ -1,0 +1,37 @@
+---
+- hosts: all
+  tasks:
+    - name: install LAMP for Debian distros
+      become: true
+      apt:
+        name:
+          - apache2
+          - mariadb-server
+          - php-cli
+        state: latest
+        update_cache: true
+
+      when: ansible_os_family == "Debian"
+
+    - name: install LAMP for RedHat distros
+      become: true
+      yum:
+        name:
+          - httpd
+          - mariadb-server
+          - php
+        state: latest
+        update_cache: true
+      when: ansible_os_family == "RedHat"
+    
+    - name: Install Amp in Windows distros
+      become_user: Administrator
+      become_method: runas  
+      win_chocolatey:
+        name:
+        - apache-httpd
+        - mysql
+        - php
+        - bitnami-xampp
+        state: latest
+      when: ansible_os_family == "Windows"
